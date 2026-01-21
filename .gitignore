@@ -1,0 +1,49 @@
+# --- OS & IDE (Системные файлы) ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+thumbs.db
+
+# --- Logs (Логи) ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Environment Variables (Секреты) ---
+# Важно: никогда не пушь пароли и настройки подключения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Backend (Go) ---
+# Скомпилированные бинарники (exe, или просто main)
+*.exe
+*.test
+*.out
+/backend/main
+/backend/api
+
+# Папка vendor (если используется, обычно не пушится)
+vendor/
+
+# --- Frontend (React/Node) ---
+# Самая тяжелая папка, её ни в коем случае нельзя в git
+node_modules/
+
+# Папки сборки (продакшн версия)
+build/
+dist/
+.eslintcache
+
+# --- Docker & Database ---
+# Если вдруг решишь выгрузить базу данных в локальную папку
+pg_data/
+postgres_data/
+
+# --- Testing ---
+coverage/

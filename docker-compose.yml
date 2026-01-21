@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. Frontend (React + Nginx)
+  frontend:
+    build: ./front/water-front
+    container_name: water-frontend
+    ports:
+      - "3000:80" # Открываем сайт на localhost:3000
+    depends_on:
+      - backend
+
+  # 2. Backend (Go API)
+  backend:
+    build: ./back
+    container_name: water-backend
+    ports:
+      - "8080:8080"
+    environment:
+      # Обращается к сервису 'db'
+      - DATABASE_URL=postgres://postgres:secret@db:5432/waterdb?sslmode=disable
+    depends_on:
+      - db
+    restart: always
+
+  # 3. Database (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: water-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: waterdb
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
