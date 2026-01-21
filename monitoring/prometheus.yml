@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 5s # Собирать данные каждые 5 секунд (для теста часто, в проде реже)
+
+scrape_configs:
+  - job_name: 'water-backend'
+    static_configs:
+      - targets: ['backend:8080'] # Имя сервиса из docker-compose + порт
